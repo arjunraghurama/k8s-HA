@@ -177,7 +177,7 @@ sudo kubectl apply -f metallb-config.yaml
 
 
 
-## Create a pod and service 
+## Create a pod and service to test the setup
 
 Create a test service with a pod `nginx-svc.yaml`
 
@@ -210,4 +210,8 @@ spec:
 
 ```
 sudo kubectl apply -f nginx-svc.yaml
+```
+
+```
+sudo kubectl get svc -o wide
 ```
