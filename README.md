@@ -1,5 +1,6 @@
 # k8s-HA
 
+![](./assets/arch.drawio.svg)
 
 ## LoadBalancer for k8s
 
@@ -108,4 +109,72 @@ curl -sfL https://get.k3s.io | K3S_URL=https://192.168.0.156:6443 K3S_TOKEN=<tok
 ## k8s - Worker - 3
 ```bash
 curl -sfL https://get.k3s.io | K3S_URL=https://192.168.0.156:6443 K3S_TOKEN=<token-goes-here> sh -
+```
+
+
+## Install metallb
+On the Master node run the following commands
+```bash
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.3/config/manifests/metallb-native.yaml
+```
+
+Create config file `metallb-config.yaml` as shown below. <br>
+Choose a free IP pool range available from the router
+```yaml
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: external-ip-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 192.168.0.170-192.168.0.175
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: l2-advert
+  namespace: metallb-system
+```
+
+Apply the config
+```bash
+sudo kubectl apply -f metallb-config.yaml
+```
+
+
+
+## Create a pod and service 
+
+Create a test service with a pod `nginx-svc.yaml`
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
+---    
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+```
+
+```
+sudo kubectl apply -f nginx-svc.yaml
 ```
