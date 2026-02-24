@@ -1,0 +1,11 @@
+services:
+  mkdocs:
+    build: .
+    container_name: k8s-ha-docs
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docs:/docs/docs
+      - ./mkdocs.yml:/docs/mkdocs.yml
+

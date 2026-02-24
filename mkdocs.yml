@@ -1,0 +1,82 @@
+site_name: Kubernetes HA Cluster
+site_description: High Availability Kubernetes Cluster built on k3s — self-hosted, bare-metal, no single point of failure.
+site_author: Arjun 
+site_url: https://github.com/arjunraghurama/k8s-HA
+
+repo_name: arjunraghurama/k8s-HA
+repo_url: https://github.com/arjunraghurama/k8s-HA
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    
+  font:
+    text: Inter
+    code: JetBrains Mono
+  favicon: assets/logo.svg
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/kubernetes
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/arjunraghurama/k8s-HA
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Setup Guide:
+    - Load Balancer: setup/loadbalancer.md
+    - Database: setup/database.md
+    - Master Nodes: setup/masters.md
+    - Worker Nodes: setup/workers.md
+    - MetalLB: setup/metallb.md
+    - Testing: setup/testing.md
