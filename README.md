@@ -8,7 +8,7 @@ This repository provides a complete, step-by-step guide for bootstrapping a **mu
 
 ---
 ### Architecture
-![Architecture Diagram](./assets/arch.drawio.svg)
+![Architecture Diagram](./docs/assets/arch.drawio.svg)
 
 ### Key Components
 
