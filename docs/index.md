@@ -1,6 +1,6 @@
 # k8s-HA — High Availability Kubernetes Cluster
 
-> A self-hosted **Highly Available (HA) Kubernetes cluster** built on **k3s**, designed to run on bare-metal or home-lab hardware with no single point of failure.
+> A self-hosted **Highly Available (HA) Kubernetes cluster** built on **k3s**, designed to run on bare-metal or home-lab hardware.
 
 ---
 
